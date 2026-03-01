@@ -100,16 +100,36 @@ console.log(closure1());
 // Use a closure so that the password variable is not directly accessible from outside.
 // ✅ When calling the get() method, it should return the current password.
 
+// function passwordManager(){
+//     return function set(newPass){
+//         return function get(){
+//             return newPass
+//         }
+//     }
+// }
+// const closure2=passwordManager()
+// const closure3=closure2("abcd")
+// console.log(closure3());
+
 function passwordManager(){
-    return function set(newPass){
-        return function get(){
-            return newPass
-        }
+    let password="";
+    return{
+         set:(newPass)=>{
+         password=newPass;
+        
+    },
+         get : ()=>{
+         return password
     }
+        
+    }
+   
 }
-const closure2=passwordManager()
-const closure3=closure2("abcd")
-console.log(closure3());
+
+const manager=passwordManager()
+manager.set("abcd");
+console.log(manager.get());
+
 
 
 
